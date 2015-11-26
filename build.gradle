@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+mainClassName = 'com.ursideus.springaop.Application'
+
+// tag::repositories[]
+repositories { 
+    mavenCentral() 
+}
+// end::repositories[]
+
+// tag::jar[]
+jar {
+    baseName = 'springer-aop'
+    version =  '0.1.0'
+}
+// end::jar[]
+
+// tag::dependencies[]
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+    compile('org.springframework:spring-core:4.0.3.RELEASE')
+    compile("org.springframework:spring-context:4.0.0.RELEASE")
+    compile("joda-time:joda-time:2.2")
+
+
+    //compile("org.slf4j:slf4j-api:1.7.5")
+    //compile("org.slf4j:jcl-over-slf4j:1.7.5")
+    //compile("org.slf4j:slf4j-log4j12:1.7.5")
+    //compile("log4j:log4j:1.2.15")
+
+    testCompile('junit:junit')
+}
+// end::dependencies[]
+
+// tag::wrapper[]
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+// end::wrapper[]
