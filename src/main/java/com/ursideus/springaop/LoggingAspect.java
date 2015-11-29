@@ -68,17 +68,17 @@ public class LoggingAspect {
     ///-- @Around advice overrides @AfterThrowing and catches exceptions instead
     @Around("fullPackageScopePoitCut()")
     public void aroundAdvice(ProceedingJoinPoint joinPoint) {
-        System.out.println("Around advice: before execution:" + joinPoint.getSignature().getName());
+        System.out.println("LoggingAspect: Around advice - before execution:" + joinPoint.getSignature().getName());
 
         try {
             joinPoint.proceed();
         } catch (Throwable throwable) {
             //throwable.printStackTrace();
-            System.out.println("Around advice: caught exception" +
+            System.out.println("LoggingAspect: Around advice - caught exception" +
                     throwable.getMessage() + " in: " + joinPoint.getSignature().getName());
         }
 
-        System.out.println("Around advice: after execution:" + joinPoint.getSignature().getName());
+        System.out.println("LoggingAspect: Around advice - after execution:" + joinPoint.getSignature().getName());
     }
 
 }

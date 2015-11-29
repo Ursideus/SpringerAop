@@ -1,22 +1,35 @@
 package com.ursideus.springaop;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by dovw on 11/26/15.
  */
+
+@Aspect
+@Component
 public class AroundAspect {
 
-//    @Around("execution(* com.ursideus.springaop.*.*(..))")
-//    public Object employeeAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
-//        System.out.println("Before invoking getName() method");
-//        Object value = null;
-//        try {
-//            value = proceedingJoinPoint.proceed();
-//        } catch (Throwable e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("After invoking getName() method. Return value="+value);
-//        return value;
-//    }
+    @Pointcut("within(com.ursideus.springaop..*)")
+    public void fullPackageScopePoitCut() {}
+
+    @Around("fullPackageScopePoitCut()")
+    public Object employeeAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
+        System.out.println("AroundAspect: Before invoking getName() method");
+        Object value = null;
+        try {
+            value = proceedingJoinPoint.proceed();
+        } catch (Throwable ex) {
+            System.out.println("AroundAspect: caught exception" +
+                    ex.getMessage() + " in: " + proceedingJoinPoint.getSignature().getName());
+        }
+        System.out.println("AroundAspect: After invoking getName() method. Return value = " + value);
+        return value;
+    }
 
 //    @Around("execution(* *(..)) && @annotation(Loggable)")
 //    public Object around(ProceedingJoinPoint point) {
