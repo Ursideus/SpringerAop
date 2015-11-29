@@ -11,13 +11,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Application {
 
     //@Bean
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
-        //ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("/spring.xml");
+        AnnotationConfigApplicationContext appContext = null;
+        try {
+            appContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
+            //ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("/spring.xml");
 
-        Camera camera = (Camera)appContext.getBean("camera");
-        camera.snap();
+            Camera camera = (Camera)appContext.getBean("camera");
+            camera.snap();
+
+            camera.exceptionalSnap();
+        } catch (Exception ex) {
+            System.out.println("caught exception: " + ex.getMessage());;
+        }
 
         appContext.close();
     }

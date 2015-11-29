@@ -13,4 +13,8 @@ public class Camera {
         System.out.println("SNAP");
     }
 
+    public void exceptionalSnap() throws Exception {
+        throw new Exception("Exception occurred");
+    }
+
 }
