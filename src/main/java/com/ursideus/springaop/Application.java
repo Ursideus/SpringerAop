@@ -17,10 +17,10 @@ public class Application {
             appContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
             //ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("/spring.xml");
 
-            Camera camera = (Camera)appContext.getBean("camera");
+            ICamera camera = (ICamera)appContext.getBean("camera");
             camera.snap();
 
-            System.out.println("camera instance of Camera: " + (camera instanceof Camera));
+            System.out.println("camera instance of Camera: " + (camera instanceof ICamera));
             System.out.println("camera instance of PhotographyDavide: " + (camera instanceof PhotographyDavide));
 
             camera.exceptionalSnap();
