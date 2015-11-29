@@ -17,7 +17,11 @@ public class AroundAspect {
     @Pointcut("within(com.ursideus.springaop..*)")
     public void fullPackageScopePoitCut() {}
 
-    @Around("fullPackageScopePoitCut()")
+    @Pointcut("target(com.ursideus.springaop.Camera)")
+    public void cameraClassScopePoitCut() {}
+
+    //@Around("fullPackageScopePoitCut()")
+    @Around("cameraClassScopePoitCut()")
     public Object employeeAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
         System.out.println("AroundAspect: Before invoking getName() method");
         Object value = null;
