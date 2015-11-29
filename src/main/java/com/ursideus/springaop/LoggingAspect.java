@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 ///-- an Aspect
-@Aspect
+//@Aspect
 public class LoggingAspect {
 
 
@@ -60,7 +60,7 @@ public class LoggingAspect {
     ///-- add point cut, before any method execution
     @Before("fullPackageScopePoitCut()")
     //@Pointcut("execution(* *.*(..))")
-    public void logBeforeMethod(JoinPoint joinPoint) {
+        public void logBeforeMethod(JoinPoint joinPoint) {
         System.out.println("executing method: " + joinPoint.getSignature().getName());
     }
 

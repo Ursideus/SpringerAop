@@ -9,8 +9,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * Created by dovw on 11/26/15.
  */
 @Configuration
-@ComponentScan
-//@ComponentScan(basePackages = {"com.ursideus.springaop"})
+//@ComponentScan
+@ComponentScan(basePackages = {"com.ursideus"})
 @EnableAspectJAutoProxy(proxyTargetClass = false)
 public class AppConfiguration {
 

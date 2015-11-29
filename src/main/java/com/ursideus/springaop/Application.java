@@ -20,8 +20,8 @@ public class Application {
             ICamera camera = (ICamera)appContext.getBean("camera");
             camera.snap();
 
-            System.out.println("camera instance of Camera: " + (camera instanceof ICamera));
-            System.out.println("camera instance of PhotographyDavide: " + (camera instanceof PhotographyDavide));
+            //System.out.println("camera instance of Camera: " + (camera instanceof ICamera));
+            //System.out.println("camera instance of PhotographyDevice: " + (camera instanceof PhotographyDevice));
 
             camera.exceptionalSnap();
         } catch (Exception ex) {
