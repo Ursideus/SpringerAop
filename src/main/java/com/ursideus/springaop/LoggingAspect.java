@@ -15,33 +15,42 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LoggingAspect {
 
+
+    ///-- Define dummy method as pointcut reference
+    @Pointcut("execution(* com.ursideus.springaop.Camera.snap(..))")
+    public void cameraMethodPoitCut() {
+
+    }
+
     //@Bean
     ///-- an advice
     ///-- add point cut, before Camera.snap() method
-    @Before("execution(* com.ursideus.springaop.Camera.snap(..))")
-    //@Pointcut("execution(* Camera.snap(..))")
+    ///-- user pointcut ref method
+    @Before("cameraMethodPoitCut()")
+    //@Before("execution(* com.ursideus.springaop.Camera.snap(..))")
     public void beforeTakingPhoto() {
         System.out.println("about to snap a pic");
     }
 
+    ///-- Will be called after target execution always
     @After("execution(* com.ursideus.springaop.Camera.snap(..))")
     //@Pointcut("execution(* Camera.snap(..))")
     public void afterTakingPhoto() {
         System.out.println("just took a pic");
     }
 
+    ///-- Will be called after target execution except when exception thrown
     @AfterReturning("execution(* com.ursideus.springaop.Camera.snap(..))")
     //@Pointcut("execution(* Camera.snap(..))")
     public void afterReturningTakingPhoto() {
-        System.out.println("afr. returning from taking a pic");
+        System.out.println("after returning from taking a pic");
     }
 
-    //@Bean
     ///-- an advice
     ///-- add point cut, before any method
-    @Before("execution(* com.ursideus.springaop.*.*(..))")
-    //@Pointcut("execution(* *.*(..))")
-    public void logBeforeMethod(JoinPoint joinPoint) {
-        System.out.println("executing method: " + joinPoint.getSignature().getName());
-    }
+//    @Before("execution(* com.ursideus.springaop.*.*(..))")
+//    //@Pointcut("execution(* *.*(..))")
+//    public void logBeforeMethod(JoinPoint joinPoint) {
+//        System.out.println("executing method: " + joinPoint.getSignature().getName());
+//    }
 }
