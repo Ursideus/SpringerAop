@@ -1,6 +1,7 @@
 package com.ursideus.springaop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,9 @@ public class LoggingAspect {
 
     @Pointcut("execution(* com.ursideus.springaop.Camera.*(..))")
     public void cameraMethodPoitCut() {}
+
+    @Pointcut("execution(* com.ursideus.springaop.*.*(..))")
+    public void fullPackageScopePoitCut() {}
 
     //@Bean
     ///-- an advice
@@ -52,12 +56,29 @@ public class LoggingAspect {
         System.out.println("after throwing advice");
     }
 
-
     ///-- an advice
     ///-- add point cut, before any method execution
-    @Before("execution(* com.ursideus.springaop.*.*(..))")
+    @Before("fullPackageScopePoitCut()")
     //@Pointcut("execution(* *.*(..))")
     public void logBeforeMethod(JoinPoint joinPoint) {
         System.out.println("executing method: " + joinPoint.getSignature().getName());
     }
+
+
+    ///-- @Around advice overrides @AfterThrowing and catches exceptions instead
+    @Around("fullPackageScopePoitCut()")
+    public void aroundAdvice(ProceedingJoinPoint joinPoint) {
+        System.out.println("Around advice: before execution:" + joinPoint.getSignature().getName());
+
+        try {
+            joinPoint.proceed();
+        } catch (Throwable throwable) {
+            //throwable.printStackTrace();
+            System.out.println("Around advice: caught exception" +
+                    throwable.getMessage() + " in: " + joinPoint.getSignature().getName());
+        }
+
+        System.out.println("Around advice: after execution:" + joinPoint.getSignature().getName());
+    }
+
 }
