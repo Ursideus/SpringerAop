@@ -1,7 +1,6 @@
 package com.ursideus.springaop;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by dovw on 11/25/15.
@@ -20,6 +19,9 @@ public class Application {
 
             Camera camera = (Camera)appContext.getBean("camera");
             camera.snap();
+
+            System.out.println("camera instance of Camera: " + (camera instanceof Camera));
+            System.out.println("camera instance of PhotographyDavide: " + (camera instanceof PhotographyDavide));
 
             camera.exceptionalSnap();
         } catch (Exception ex) {
