@@ -17,12 +17,13 @@ public class AroundAspect {
     @Pointcut("within(com.ursideus.springaop..*)")
     public void fullPackageScopePoitCut() {}
 
-    @Pointcut("target(com.ursideus.springaop.Camera)")
+    ///-- Can use interface but no wildcards allowed in target
+    @Pointcut("target(com.ursideus.springaop.ICamera)")
     public void cameraClassScopePoitCut() {}
 
     //@Around("fullPackageScopePoitCut()")
     @Around("cameraClassScopePoitCut()")
-    public Object employeeAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
+    public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
         System.out.println("AroundAspect: Before invoking getName() method");
         Object value = null;
         try {
