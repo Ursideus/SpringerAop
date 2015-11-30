@@ -28,7 +28,10 @@ public class SecurityAspect {
     @Pointcut("@args(org.springframework.stereotype.Component)")
     public void allArgTypesComponent() {}
 
-    @Before("allArgTypesComponent()")
+    @Pointcut("bean(*leans)")
+    public void allBeansById() {}
+
+    @Before("allBeansById()")
     public void authorizedBefore(JoinPoint joinPoint) {
         System.out.println("SecurityAspect: method " + joinPoint.getSignature().getName() + " is authorized");
     }
