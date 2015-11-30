@@ -33,6 +33,9 @@ public class LoggingAspect {
     @Pointcut("args(..)")
     public void allMethods() {}
 
+    @Pointcut("args(exposure, focus)")
+    public void methodsWithArgsIntLong(int exposure, long focus) {}
+
     //@Bean
     ///-- an advice
     ///-- add point cut, before Camera.snap() method
@@ -64,15 +67,22 @@ public class LoggingAspect {
 
     ///-- an advice
     ///-- add point cut, before any method execution
-    @Before("allMethods()")
-    //@Pointcut("execution(* *.*(..))")
-        public void logBeforeMethod(JoinPoint joinPoint) {
+//    @Before("allMethods()")
+//        public void logBeforeMethod(JoinPoint joinPoint) {
+//        System.out.println("executing method: " + joinPoint.getSignature().getName());
+//        System.out.println(">method args: ");
+//
+//        for (Object arg : joinPoint.getArgs()) {
+//            System.out.println(">arg - " + arg );
+//        }
+//    }
+
+    @Before("methodsWithArgsIntLong(exposure, focus)")
+    public void logBeforeMethod(JoinPoint joinPoint, int exposure, long focus) {
         System.out.println("executing method: " + joinPoint.getSignature().getName());
         System.out.println(">method args: ");
-
-        for (Object arg : joinPoint.getArgs()) {
-            System.out.println(">arg - " + arg );
-        }
+        System.out.println("> exposure args - " + exposure);
+        System.out.println("> focus args - " + focus);
     }
 
 
