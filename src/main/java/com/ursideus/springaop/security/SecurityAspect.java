@@ -34,7 +34,16 @@ public class SecurityAspect {
     @Pointcut("args()")
     public void allMethodsWNoArgs() {}
 
-    @Before("allMethodsWNoArgs()")
+    @Pointcut("args(int)")
+    public void allMethodsIntArg() {}
+
+    @Pointcut("args(int, *)")
+    public void allMethodsIntAndOneOtherArg() {}
+
+    @Pointcut("args(int, ..)")
+    public void allMethodsIntAndAnyOtherArg() {}
+
+    @Before("allMethodsIntAndAnyOtherArg()")
     public void authorizedBefore(JoinPoint joinPoint) {
         System.out.println("SecurityAspect: method " + joinPoint.getSignature().getName() + " is authorized");
     }

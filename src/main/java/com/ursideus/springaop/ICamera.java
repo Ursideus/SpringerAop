@@ -7,6 +7,10 @@ public interface ICamera {
 
     void snap();
 
+    void snap(int waitTime);
+
+    void snap(int waitTime, long focus);
+
     void exceptionalSnap() throws Exception;
 
     void snapPicWithLeans(Leans leanse);

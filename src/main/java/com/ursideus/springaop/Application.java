@@ -19,6 +19,8 @@ public class Application {
 
             ICamera camera = (ICamera)appContext.getBean("camera");
             camera.snap();
+            camera.snap(10);
+            camera.snap(3, 11);
 
             Leans leans = (Leans)appContext.getBean("leans");
             camera.snapPicWithLeans(leans);

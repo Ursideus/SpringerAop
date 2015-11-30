@@ -17,6 +17,14 @@ public class Camera implements PhotographyDevice, ICamera {
         System.out.println("SNAP");
     }
 
+    public void snap(int waitTime) {
+        System.out.println("SNAP with wait time " + waitTime);
+    }
+
+    public void snap(int waitTime, long focus) {
+        System.out.println("SNAP with wait time " + waitTime + " focus " + focus);
+    }
+
     @Override
     public void exceptionalSnap() throws Exception {
         throw new Exception("Exception occurred");
