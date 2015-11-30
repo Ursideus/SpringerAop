@@ -36,6 +36,9 @@ public class LoggingAspect {
     @Pointcut("args(exposure, focus)")
     public void methodsWithArgsIntLong(int exposure, long focus) {}
 
+    @Pointcut("args(exposure, ..)")
+    public void methodsWithArgsIntAndOther(int exposure) {}
+
     //@Bean
     ///-- an advice
     ///-- add point cut, before Camera.snap() method
@@ -77,14 +80,21 @@ public class LoggingAspect {
 //        }
 //    }
 
-    @Before("methodsWithArgsIntLong(exposure, focus)")
-    public void logBeforeMethod(JoinPoint joinPoint, int exposure, long focus) {
+//    @Before("methodsWithArgsIntLong(exposure, focus)")
+//    public void logBeforeMethod(JoinPoint joinPoint, int exposure, long focus) {
+//        System.out.println("executing method: " + joinPoint.getSignature().getName());
+//        System.out.println(">method args: ");
+//        System.out.println("> exposure args - " + exposure);
+//        System.out.println("> focus args - " + focus);
+//    }
+
+
+    @Before("methodsWithArgsIntAndOther(exposure)")
+    public void logBeforeMethod(JoinPoint joinPoint, int exposure) {
         System.out.println("executing method: " + joinPoint.getSignature().getName());
         System.out.println(">method args: ");
         System.out.println("> exposure args - " + exposure);
-        System.out.println("> focus args - " + focus);
     }
-
 
     ///-- @Around advice overrides @AfterThrowing and catches exceptions instead
     //@Around("")
