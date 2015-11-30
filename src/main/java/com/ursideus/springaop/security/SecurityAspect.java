@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * Created by dovw on 11/29/15.
  */
 
-@Aspect
+//@Aspect
 @Component
 public class SecurityAspect {
 
