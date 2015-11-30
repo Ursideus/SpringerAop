@@ -65,7 +65,7 @@ public class LoggingAspect {
 
     @AfterThrowing("allMethods()")
     public void afterThrowingAdvice() {
-        System.out.println("logging aspect: after throwing advice");
+        System.out.println("LoggingAspect: after throwing advice");
     }
 
     ///-- an advice
@@ -86,6 +86,11 @@ public class LoggingAspect {
         System.out.println(">method args: ");
         System.out.println("> exposure args - " + exposure);
         System.out.println("> focus args - " + focus);
+    }
+
+    @After("within(com.ursideus.springaop.*) &&  @annotation(com.ursideus.springaop.security.Secured)")
+    public void afterTakingPhoto(JoinPoint joinPoint) {
+        System.out.println("LoggingAspect: After advice - " + joinPoint.getSignature().getName());
     }
 
 
