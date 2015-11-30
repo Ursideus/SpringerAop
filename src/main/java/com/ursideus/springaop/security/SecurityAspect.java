@@ -31,7 +31,10 @@ public class SecurityAspect {
     @Pointcut("bean(*leans)")
     public void allBeansById() {}
 
-    @Before("allBeansById()")
+    @Pointcut("args()")
+    public void allMethodsWNoArgs() {}
+
+    @Before("allMethodsWNoArgs()")
     public void authorizedBefore(JoinPoint joinPoint) {
         System.out.println("SecurityAspect: method " + joinPoint.getSignature().getName() + " is authorized");
     }
