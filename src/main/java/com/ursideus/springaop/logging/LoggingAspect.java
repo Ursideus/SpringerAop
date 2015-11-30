@@ -1,4 +1,4 @@
-package com.ursideus.springaop;
+package com.ursideus.springaop.logging;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

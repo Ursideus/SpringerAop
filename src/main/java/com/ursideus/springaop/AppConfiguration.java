@@ -1,6 +1,6 @@
 package com.ursideus.springaop;
 
-import org.springframework.context.annotation.Bean;
+import com.ursideus.springaop.logging.LoggingAspect;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;

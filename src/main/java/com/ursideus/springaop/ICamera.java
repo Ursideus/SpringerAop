@@ -8,4 +8,6 @@ public interface ICamera {
     void snap();
 
     void exceptionalSnap() throws Exception;
+
+    void snapPicWithLeans(Leans leanse);
 }

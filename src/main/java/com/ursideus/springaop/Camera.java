@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @Component("camera")
 public class Camera implements PhotographyDevice, ICamera {
 
+    private String type;
+
     @Secured
     @Override
     public void snap() {
@@ -18,6 +20,10 @@ public class Camera implements PhotographyDevice, ICamera {
     @Override
     public void exceptionalSnap() throws Exception {
         throw new Exception("Exception occurred");
+    }
+
+    public void snapPicWithLeans(Leans leans) {
+        leans.clickPic();
     }
 
 }

@@ -20,6 +20,9 @@ public class Application {
             ICamera camera = (ICamera)appContext.getBean("camera");
             camera.snap();
 
+            Leans leans = (Leans)appContext.getBean("leans");
+            camera.snapPicWithLeans(leans);
+
             //System.out.println("camera instance of Camera: " + (camera instanceof ICamera));
             //System.out.println("camera instance of PhotographyDevice: " + (camera instanceof PhotographyDevice));
 

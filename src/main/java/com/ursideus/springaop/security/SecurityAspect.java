@@ -25,7 +25,10 @@ public class SecurityAspect {
     @Pointcut("@annotation(Secured)")
     public void annotatedSecured() {}
 
-    @Before("annotatedSecured()")
+    @Pointcut("@args(org.springframework.stereotype.Component)")
+    public void allArgTypesComponent() {}
+
+    @Before("allArgTypesComponent()")
     public void authorizedBefore(JoinPoint joinPoint) {
         System.out.println("SecurityAspect: method " + joinPoint.getSignature().getName() + " is authorized");
     }
