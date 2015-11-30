@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 ///-- an Aspect
-@Aspect
+//@Aspect
 public class LoggingAspect {
 
 

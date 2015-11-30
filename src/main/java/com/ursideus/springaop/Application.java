@@ -1,5 +1,6 @@
 package com.ursideus.springaop;
 
+import com.ursideus.springaop.machine.IMachine;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -18,12 +19,15 @@ public class Application {
             //ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("/spring.xml");
 
             ICamera camera = (ICamera)appContext.getBean("camera");
+            ((IMachine)camera).turnOn();
             camera.snap();
             camera.snap(10);
             camera.snap(3, 11);
 
             Leans leans = (Leans)appContext.getBean("leans");
             camera.snapPicWithLeans(leans);
+
+            ((IMachine)camera).turnOff();
 
             //System.out.println("camera instance of Camera: " + (camera instanceof ICamera));
             //System.out.println("camera instance of PhotographyDevice: " + (camera instanceof PhotographyDevice));
